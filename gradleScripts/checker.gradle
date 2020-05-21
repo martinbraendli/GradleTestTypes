@@ -1,0 +1,18 @@
+configurations {
+    checkertestImplementation.extendsFrom testImplementation
+}
+
+sourceSets {
+    checkertest {
+        java.srcDir "$projectDir/src/checkertest/java"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+task checkerTest(type: Test) {
+    testClassesDirs = sourceSets.checkertest.output.classesDirs
+    classpath = sourceSets.checkertest.runtimeClasspath
+}
+
+check.dependsOn checkerTest

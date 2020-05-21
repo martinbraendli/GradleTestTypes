@@ -1,0 +1,4 @@
+include 'SubProjectA'
+include 'SubProjectB'
+include 'SubProjectC'
+include 'SubProjectD'

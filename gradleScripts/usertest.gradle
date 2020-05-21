@@ -1,0 +1,16 @@
+configurations {
+    usertestImplementation.extendsFrom testImplementation
+}
+
+sourceSets {
+    usertest {
+        java.srcDir "$projectDir/src/usertest/java"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+task userTest(type: Test) {
+    testClassesDirs = sourceSets.usertest.output.classesDirs
+    classpath = sourceSets.usertest.runtimeClasspath
+}

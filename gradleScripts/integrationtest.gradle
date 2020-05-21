@@ -1,0 +1,18 @@
+configurations {
+    integrationtestImplementation.extendsFrom testImplementation
+}
+
+sourceSets {
+    integrationtest {
+        java.srcDir "$projectDir/src/integrationtest/java"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationtest.output.classesDirs
+    classpath = sourceSets.integrationtest.runtimeClasspath
+}
+
+check.dependsOn integrationTest
